@@ -57,3 +57,7 @@ python tests.py
 ```
 
 This will run all the tests in the `tests` directory, and you will see the testing results in the console.
+
+## Generating Sample Data
+
+For demonstration purposes, you can easily generate sample data using the `gen_sample_data.py` script. This script creates a set of random purchases along with a list of categories, and saves them to a file which can be used to test the bot.

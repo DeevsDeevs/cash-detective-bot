@@ -2,36 +2,36 @@ import json
 import random
 from datetime import datetime, timedelta
 
-# Список возможных категорий и описаний
+# List of possible categories and descriptions
 categories = ["Food", "Guns", "Entertainment", "Clothing", "Electronics", "Health", "Transport"]
 descriptions = ["Groceries", "Nerf Gun", "Movie Tickets", "T-Shirt", "Headphones", "Medicine", "Bus Ticket"]
 
-# Начальные данные
+# Initial data
 user_data = {
     "categories": categories,
     "purchases": [],
     "balance": 1000.0
 }
 
-# Генерация случайных покупок
-current_date = datetime.utcnow() - timedelta(days=365)  # начать с года назад
-for i in range(200):  # создать 200 покупок
+# Generation of random purchases
+current_date = datetime.utcnow() - timedelta(days=365)  # start from a year ago
+for i in range(200):  # create 200 purchases
     category = random.choice(categories)
     description = random.choice(descriptions)
-    cost = random.uniform(1, 100)  # случайная стоимость от 1 до 100
+    cost = random.uniform(1, 100)  # random cost from 1 to 100
     timestamp = int(current_date.timestamp())
     
     purchase = {
         "description": description,
-        "cost": round(cost, 2),  # округление до 2 знаков после запятой
+        "cost": round(cost, 2),  # rounding to 2 decimal places
         "category": category,
         "timestamp": timestamp
     }
     user_data["purchases"].append(purchase)
     
-    current_date += timedelta(days=random.randint(0, 3))  # добавить от 0 до 3 дней до следующей покупки
+    current_date += timedelta(days=random.randint(0, 3))  # add from 0 to 3 days until the next purchase
 
-# Сохранение данных в файл
-user_id = 123456  # ваш ID пользователя
+# Saving data to a file
+user_id = 123456  # your user ID
 with open(f'storage/{user_id}_data.json', 'w') as file:
     json.dump(user_data, file, indent=4)
